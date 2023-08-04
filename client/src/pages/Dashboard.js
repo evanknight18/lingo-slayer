@@ -15,7 +15,7 @@ const Dashboard = () => {
         {/* More links as needed */}
       </div>
 
-      {/* Optional: You might want to include user-specific information if they're logged in */}
+      {/* include user-specific information if they're logged in */}
       <div className="user-progress">
         <h3>Your Progress:</h3>
         <p>3/5 Lessons Completed</p>

@@ -1,38 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Box, Heading, Text, SimpleGrid } from '@chakra-ui/react';
+import { Chord } from 'tonal';
 
 const ChordsPage = () => {
-  // Assume you might fetch this data from your API
+  const chordSymbols = [
+    'C', 'Dm', 'G7', 'Fmaj7', 'Amin7',
+    'Bmaj7', 'C#m', 'D7', 'Emaj7', 'F#min7',
+    'Gmaj7', 'A#m', 'B7', 'Cmin7', 'D#maj7',
+    'Emin', 'F#7', 'G#maj7', 'Amin', 'Bb7',
+  ];
+  
+
   const [chords, setChords] = useState([]);
 
   useEffect(() => {
-    // Fetch chords from the API
-    // Replace with the actual logic to fetch chords from your server
-    fetch('/api/chords')
-      .then((response) => response.json())
-      .then((data) => setChords(data))
-      .catch((error) => console.error('Error fetching chords:', error));
+    const fetchedChords = chordSymbols.map((symbol) => {
+      const { notes } = Chord.get(symbol);
+      return {
+        name: symbol,
+        notes: notes.join(', '),
+      };
+    });
+
+    setChords(fetchedChords);
   }, []);
 
   return (
-    <div className="chords-page">
-      <h2>Explore Chords</h2>
-      <div className="chords-list">
+    <Box className="chords-page" padding={5}>
+      <Heading as="h2" size="lg" marginBottom={5}>
+        Explore Chords
+      </Heading>
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={5}>
         {chords.length > 0 ? (
-          chords.map((chord) => (
-            <div key={chord.id} className="chord-item">
-              <Link to={`/chords/${chord.id}`}>
-                <h3>{chord.name}</h3>
-                <p>{chord.description}</p>
+          chords.map((chord, index) => (
+            <Box key={index} className="chord-item" padding={4} borderWidth={1} borderRadius="md">
+              <Link to={`/chords/${chord.name}`}>
+                <Heading as="h3" size="md">{chord.name}</Heading>
+                <Text>Notes: {chord.notes}</Text>
                 {/* You may also include a visual representation or interactive play button for the chord */}
               </Link>
-            </div>
+            </Box>
           ))
         ) : (
-          <p>Loading chords...</p>
+          <Text>Loading chords...</Text>
         )}
-      </div>
-    </div>
+      </SimpleGrid>
+    </Box>
   );
 };
 

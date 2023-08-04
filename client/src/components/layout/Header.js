@@ -1,36 +1,39 @@
 import React from 'react';
+import { Box, Heading, Flex, Link as ChakraLink } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <header className="header">
-      <h1>
-        <Link to="/">Music of the Spheres</Link>
-      </h1>
-      <nav className="navigation">
-        <ul>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-          <li>
-            <Link to="/lessons">Lessons</Link>
-          </li>
-          <li>
-            <Link to="/circle-of-fifths">Circle of Fifths</Link>
-          </li>
-          <li>
-            <Link to="/scales">Scales</Link>
-          </li>
-          <li>
-            <Link to="/chords">Chords</Link>
-          </li>
-          <li>
-            <Link to="/quiz">Quiz</Link>
-          </li>
-          {/* Add other links as needed */}
-        </ul>
-      </nav>
-    </header>
+    <Box as="header" padding="1rem" background="gray.200">
+      <Flex justifyContent="space-between" alignItems="center" wrap="wrap">
+        <Heading as="h1" size="lg">
+          <ChakraLink as={Link} to="/">Music of the Spheres</ChakraLink>
+        </Heading>
+        <Box as="nav">
+          <Flex as="ul" listStyleType="none" alignItems="center" wrap="wrap">
+            <Box as="li" margin="0 0.5rem">
+              <ChakraLink as={Link} to="/dashboard">Dashboard</ChakraLink>
+            </Box>
+            <Box as="li" margin="0 0.5rem">
+              <ChakraLink as={Link} to="/lessons">Lessons</ChakraLink>
+            </Box>
+            <Box as="li" margin="0 0.5rem">
+              <ChakraLink as={Link} to="/circle-of-fifths">Circle of Fifths</ChakraLink>
+            </Box>
+            <Box as="li" margin="0 0.5rem">
+              <ChakraLink as={Link} to="/scales">Scales</ChakraLink>
+            </Box>
+            <Box as="li" margin="0 0.5rem">
+              <ChakraLink as={Link} to="/chords">Chords</ChakraLink>
+            </Box>
+            <Box as="li" margin="0 0.5rem">
+              <ChakraLink as={Link} to="/quiz">Quiz</ChakraLink>
+            </Box>
+            {/* Add other links as needed */}
+          </Flex>
+        </Box>
+      </Flex>
+    </Box>
   );
 };
 
