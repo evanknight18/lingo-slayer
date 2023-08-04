@@ -13,6 +13,7 @@ import ChordsPage from './pages/ChordsPage';
 import QuizPage from './pages/QuizPage';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
+import theme from './theme'; // Make sure the path to your theme.js is correct
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -35,7 +36,7 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}> {/* Use the imported theme here */}
       <ApolloProvider client={client}>
         <Router>
           <Header />

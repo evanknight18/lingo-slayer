@@ -12,10 +12,10 @@ const Header = () => {
         <Box as="nav">
           <Flex as="ul" listStyleType="none" alignItems="center" wrap="wrap">
             <Box as="li" margin="0 0.5rem">
-              <ChakraLink as={Link} to="/dashboard">Dashboard</ChakraLink>
+              <ChakraLink as={Link} to="/lessons">Lessons</ChakraLink>
             </Box>
             <Box as="li" margin="0 0.5rem">
-              <ChakraLink as={Link} to="/lessons">Lessons</ChakraLink>
+              <ChakraLink as={Link} to="/quiz">Quiz</ChakraLink>
             </Box>
             <Box as="li" margin="0 0.5rem">
               <ChakraLink as={Link} to="/circle-of-fifths">Circle of Fifths</ChakraLink>
@@ -25,9 +25,6 @@ const Header = () => {
             </Box>
             <Box as="li" margin="0 0.5rem">
               <ChakraLink as={Link} to="/chords">Chords</ChakraLink>
-            </Box>
-            <Box as="li" margin="0 0.5rem">
-              <ChakraLink as={Link} to="/quiz">Quiz</ChakraLink>
             </Box>
             {/* Add other links as needed */}
           </Flex>
