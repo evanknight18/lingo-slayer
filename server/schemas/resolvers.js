@@ -6,6 +6,7 @@ const resolvers = {
   Query: {
     getUser: (_, { id }) => User.findById(id),
     getLessons: () => Lesson.find({}),
+    getLesson: (_, { id }) => Lesson.findById(id), // Get a specific lesson by ID
     getQuiz: (_, { id }) => Quiz.findById(id),
   },
   Mutation: {

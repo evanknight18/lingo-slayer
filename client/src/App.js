@@ -16,7 +16,7 @@ import Footer from './components/layout/Footer';
 import theme from './theme'; // Make sure the path to your theme.js is correct
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/graphql', // Update the URL to match your server
 });
 
 const authLink = setContext((_, { headers }) => {

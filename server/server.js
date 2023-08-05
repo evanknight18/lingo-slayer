@@ -2,6 +2,7 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const cors = require('cors'); // Import CORS
 const schema = require('./schemas'); // Path to your combined schema
 
 // Connect to MongoDB
@@ -11,6 +12,9 @@ mongoose.connect('mongodb://localhost/musictheorylessons', {
 });
 
 const app = express();
+
+// Enable CORS for all origins
+app.use(cors());
 
 // Middleware for JWT authentication (optional)
 app.use((req, res, next) => {

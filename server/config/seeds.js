@@ -1,11 +1,14 @@
 const mongoose = require('mongoose');
-const Lesson = require('./models/Lesson'); // Adjust the path to your Lesson model
+const Lesson = require('../models/Lesson'); // Adjust the path to your Lesson model
 
-mongoose.connect('mongodb://localhost:27017')
-  .then(() => {
+mongoose.connect('mongodb://127.0.0.1:27017/music-theory-lessons', { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => {
     return Lesson.insertMany([
-      { title: 'Lesson 1', description: 'Introduction to Music Theory' },
-   
+      {
+        title: 'Lesson 1',
+        description: 'Introduction to Music Theory',
+        content: 'Content for Lesson 1' // You need to include this field
+      }
     ]);
   })
   .then(() => {
