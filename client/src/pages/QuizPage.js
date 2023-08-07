@@ -1,40 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { GET_QUIZ } from '../utility/queries';
 
-const QuizPage = () => {
-  // This might represent quiz data fetched from the API
-  const [quiz, setQuiz] = useState(null);
+const QuizPage = ({ quizId }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
 
-  useEffect(() => {
-    // Fetch quiz from the API
-    // Replace with actual logic to fetch quiz from your server
-    fetch('/api/quiz')
-      .then((response) => response.json())
-      .then((data) => setQuiz(data))
-      .catch((error) => console.error('Error fetching quiz:', error));
-  }, []);
+  const { loading, error, data } = useQuery(GET_QUIZ, {
+    variables: { id: quizId }
+  });
+
+  if (loading) return <p>Loading quiz...</p>;
+  if (error) return <p>Error loading quiz: {error.message}</p>;
+
+  const quiz = data.getQuiz;
 
   const handleAnswerSelect = (answerIndex) => {
     setSelectedAnswer(answerIndex);
   };
 
   const handleNextQuestion = () => {
-    if (selectedAnswer === quiz.questions[currentQuestionIndex].correctAnswer) {
+    if (selectedAnswer === quiz.questions[currentQuestionIndex].answer) {
       setScore(score + 1);
     }
     setSelectedAnswer(null);
     setCurrentQuestionIndex(currentQuestionIndex + 1);
   };
 
-  if (!quiz) return <p>Loading quiz...</p>;
-
   if (currentQuestionIndex >= quiz.questions.length) {
     return (
       <div className="quiz-results">
         <h2>Your Score: {score} / {quiz.questions.length}</h2>
-        {/* You might include further feedback, explanations, or links to related material here */}
       </div>
     );
   }
@@ -44,11 +41,11 @@ const QuizPage = () => {
   return (
     <div className="quiz-page">
       <h2>{quiz.title}</h2>
-      <p>{question.prompt}</p>
+      <p>{question.question}</p>
       <div className="answers">
-        {question.answers.map((answer, index) => (
-          <button key={index} onClick={() => handleAnswerSelect(index)}>
-            {answer}
+        {question.options.map((option, index) => (
+          <button key={index} onClick={() => handleAnswerSelect(option)}>
+            {option}
           </button>
         ))}
       </div>

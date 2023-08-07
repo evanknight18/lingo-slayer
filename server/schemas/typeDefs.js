@@ -15,21 +15,22 @@ const typeDefs = gql`
     content: String!
   }
 
-  type Quiz {
-    id: ID!
-    title: String!
-    questions: [Question!]
-  }
-
   type Question {
     question: String!
     options: [String!]
     answer: String!
   }
 
+  type Quiz {
+    id: ID!
+    title: String!
+    questions: [Question!]
+  }
+
   type Query {
     getUser(id: ID!): User
     getLessons: [Lesson]
+    getLesson(id: ID!): Lesson
     getQuiz(id: ID!): Quiz
   }
 

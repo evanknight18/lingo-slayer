@@ -1,10 +1,16 @@
 import React from 'react';
-import { Box, Heading, Flex, Link as ChakraLink } from '@chakra-ui/react';
+import { Box, Heading, Flex, Link as ChakraLink, Image } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import sheetMusicImage from '../../assets/sheetmusic.jpg';
+
 
 const Header = () => {
   return (
-    <Box as="header" padding="1rem" background="gray.200">
+    <Box
+      as="header"
+      padding="1rem"
+      background={`url(${sheetMusicImage}) no-repeat center/cover`} // Set the background image
+    >
       <Flex justifyContent="space-between" alignItems="center" wrap="wrap">
         <Heading as="h1" size="lg">
           <ChakraLink as={Link} to="/">Music of the Spheres</ChakraLink>
@@ -26,7 +32,6 @@ const Header = () => {
             <Box as="li" margin="0 0.5rem">
               <ChakraLink as={Link} to="/chords">Chords</ChakraLink>
             </Box>
-            {/* Add other links as needed */}
           </Flex>
         </Box>
       </Flex>

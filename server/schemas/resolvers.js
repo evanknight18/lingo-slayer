@@ -12,7 +12,17 @@ const resolvers = {
   Mutation: {
     createUser: (_, args) => new User(args).save(),
     createLesson: (_, args) => new Lesson(args).save(),
-    createQuiz: (_, args) => new Quiz(args).save(),
+    createQuiz: (_, { title, questions }) => {
+      const quiz = new Quiz({
+        title,
+        questions: questions.map(q => ({
+          question: q.question,
+          options: q.options,
+          answer: q.answer
+        }))
+      });
+      return quiz.save();
+    },
   },
 };
 
