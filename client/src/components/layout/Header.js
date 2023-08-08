@@ -1,8 +1,7 @@
 import React from 'react';
-import { Box, Heading, Flex, Link as ChakraLink, Image } from '@chakra-ui/react';
+import { Box, Heading, Flex, Link as ChakraLink } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import sheetMusicImage from '../../assets/sheetmusic.jpg';
-
 
 const Header = () => {
   return (
@@ -31,6 +30,9 @@ const Header = () => {
             </Box>
             <Box as="li" margin="0 0.5rem">
               <ChakraLink as={Link} to="/chords">Chords</ChakraLink>
+            </Box>
+            <Box as="li" margin="0 0.5rem">
+              <ChakraLink as={Link} to="/login">Login</ChakraLink> 
             </Box>
           </Flex>
         </Box>

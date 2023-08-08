@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Lesson = require('../models/Lesson'); // Adjust the path to your Lesson model
+const Lesson = require('../models/Lesson');
 
 mongoose.connect('mongodb://127.0.0.1:27017/music-theory-lessons', { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => {
@@ -7,7 +7,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/music-theory-lessons', { useNewUrlPa
       {
         title: 'Lesson 1',
         description: 'Introduction to Music Theory',
-        content: 'Content for Lesson 1' // You need to include this field
+        content: 'Content for Lesson 1' 
       }
     ]);
   })

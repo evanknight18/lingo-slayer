@@ -6,6 +6,7 @@ export const GET_LESSONS = gql`
       id
       title
       description
+      content
     }
   }
 `;

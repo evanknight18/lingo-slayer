@@ -1,34 +1,24 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
-const cors = require('cors'); // Import CORS
-const schema = require('./schemas'); // Path to your combined schema
+const cors = require('cors');
+const { authMiddleware } = require('./auth.js'); // Update the path to auth.js
+const schema = require('./schemas/index.js');
 
-// Connect to MongoDB
 mongoose.connect('mongodb://localhost/musictheorylessons', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+}).then(() => {
+  console.log("Connected to MongoDB");
+}).catch(err => {
+  console.error(err);
 });
 
 const app = express();
-
-// Enable CORS for all origins
 app.use(cors());
 
-// Middleware for JWT authentication (optional)
-app.use((req, res, next) => {
-  const token = req.headers.authorization;
-  if (token) {
-    try {
-      const user = jwt.verify(token, 'your-secret-key');
-      req.user = user;
-    } catch (err) {
-      console.error('Invalid token');
-    }
-  }
-  next();
-});
+// Use the authMiddleware for JWT authentication
+app.use(authMiddleware);
 
 const server = new ApolloServer({
   schema,
@@ -37,7 +27,7 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}${server.graphqlPath}`);
 });

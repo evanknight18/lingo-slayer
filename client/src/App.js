@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChakraProvider, Box, Flex } from '@chakra-ui/react';
+import { ChakraProvider, Flex } from '@chakra-ui/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
@@ -11,12 +11,14 @@ import CircleOfFifthsPage from './pages/CircleOfFifthsPage';
 import ScalesPage from './pages/ScalesPage';
 import ChordsPage from './pages/ChordsPage';
 import QuizPage from './pages/QuizPage';
+import Login from './pages/LoginPage';
+import Register from './pages/RegistrationPage';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
-import theme from './theme'; // Make sure the path to your theme.js is correct
+import theme from './theme';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql', // Update the URL to match your server
+  uri: '/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -36,20 +38,21 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ChakraProvider theme={theme}> {/* Use the imported theme here */}
+    <ChakraProvider theme={theme}>
       <ApolloProvider client={client}>
         <Router>
           <Header />
           <Flex as="main" padding="1.5rem">
             <Routes>
               <Route path="/" element={<Dashboard />} />
-              <Route path="/lessons" element={<LessonsPage />} />
-              <Route path="/lesson-detail/:id" element={<LessonDetail />} />
-              <Route path="/circle-of-fifths" element={<CircleOfFifthsPage />} />
-              <Route path="/scales" element={<ScalesPage />} />
-              <Route path="/chords" element={<ChordsPage />} />
-              <Route path="/quiz" element={<QuizPage />} />
-              {/* Add more routes here as needed */}
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+                <Route path="/lessons" element={<LessonsPage />} />
+                <Route path="/lesson-detail/:id" element={<LessonDetail />} />
+                <Route path="/circle-of-fifths" element={<CircleOfFifthsPage />} />
+                <Route path="/scales" element={<ScalesPage />} />
+                <Route path="/chords" element={<ChordsPage />} />
+                <Route path="/quiz" element={<QuizPage />} />
             </Routes>
           </Flex>
           <Footer />
