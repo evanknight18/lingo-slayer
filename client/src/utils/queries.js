@@ -1,12 +1,12 @@
 import { gql } from '@apollo/client';
 
 export const GET_LESSONS = gql`
-  query GetLessons {
+  query GSetLessons {
     getLessons {
-      id
-      title
-      description
-      content
+    _id
+    title
+    description
+    content
     }
   }
 `;

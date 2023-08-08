@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_QUIZ } from '../utility/queries';
+import { GET_QUIZ } from '../utils/queries';
 
 const QuizPage = ({ quizId }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -14,7 +14,7 @@ const QuizPage = ({ quizId }) => {
   if (loading) return <p>Loading quiz...</p>;
   if (error) return <p>Error loading quiz: {error.message}</p>;
 
-  const quiz = data.getQuiz;
+  const quiz = data.getQuiz || [];
 
   const handleAnswerSelect = (answerIndex) => {
     setSelectedAnswer(answerIndex);

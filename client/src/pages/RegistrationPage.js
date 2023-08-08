@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { CREATE_USER } from '../utility/mutations';
+import { CREATE_USER } from '../utils/mutations';
 
 const Register = () => {
   const [form, setForm] = useState({ username: '', email: '', password: '' });

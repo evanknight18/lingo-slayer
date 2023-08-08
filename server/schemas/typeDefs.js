@@ -9,7 +9,7 @@ const typeDefs = gql`
   }
 
   type Lesson {
-    id: ID!
+    _id: ID!
     title: String!
     description: String!
     content: String!
@@ -29,7 +29,7 @@ const typeDefs = gql`
 
   type Query {
     getUser(id: ID!): User
-    getLessons: [Lesson]
+    getLessons: [Lesson]!
     getLesson(id: ID!): Lesson
     getQuiz(id: ID!): Quiz
   }

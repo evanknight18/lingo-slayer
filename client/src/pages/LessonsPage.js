@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
-import { GET_LESSONS } from '../utility/queries'; // Path to your GraphQL query
+import { GET_LESSONS } from '../utils/queries'; // Path to your GraphQL query
 
 const LessonsPage = () => {
   const { loading, error, data } = useQuery(GET_LESSONS);
@@ -9,7 +9,8 @@ const LessonsPage = () => {
   if (loading) return <p>Loading lessons...</p>;
   if (error) return <p>Error fetching lessons: {error.message}</p>;
 
-  const lessons = data.getLessons;
+  const lessons = data.getLessons || [];
+  console.log(lessons);
 
   return (
     <div className="lessons-page">

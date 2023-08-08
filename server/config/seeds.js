@@ -5,9 +5,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/music-theory-lessons', { useNewUrlPa
 .then(() => {
     return Lesson.insertMany([
       {
-        title: 'Lesson 1',
-        description: 'Introduction to Music Theory',
-        content: 'Content for Lesson 1' 
       }
     ]);
   })

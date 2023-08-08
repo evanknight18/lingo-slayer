@@ -4,10 +4,10 @@ const Quiz = require('../models/Quiz');
 
 const resolvers = {
   Query: {
-    getUser: (_, { id }) => User.findById(id),
-    getLessons: () => Lesson.find({}),
-    getLesson: (_, { id }) => Lesson.findById(id),
-    getQuiz: (_, { id }) => Quiz.findById(id),
+    getUser:async (parent, { id }) => {return await User.findById(id)},
+    getLessons:async () => {return Lesson.find()},
+    getLesson:async (parent, { id }) => {return Lesson.findById(id)},
+    getQuiz:async (parent, { id }) => Quiz.findById(id),
   },
   Mutation: {
     // Create operations
@@ -26,14 +26,14 @@ const resolvers = {
     },
 
     // Update operations
-    updateUser: (_, { id, args }) => User.findByIdAndUpdate(id, args, { new: true }),
-    updateLesson: (_, { id, args }) => Lesson.findByIdAndUpdate(id, args, { new: true }),
-    updateQuiz: (_, { id, title, questions }) => Quiz.findByIdAndUpdate(id, { title, questions }, { new: true }),
+    // updateUser: (_, { id, args }) => User.findByIdAndUpdate(id, args, { new: true }),
+    // updateLesson: (_, { id, args }) => Lesson.findByIdAndUpdate(id, args, { new: true }),
+    // updateQuiz: (_, { id, title, questions }) => Quiz.findByIdAndUpdate(id, { title, questions }, { new: true }),
 
-    // Delete operations
-    deleteUser: (_, { id }) => User.findByIdAndDelete(id),
-    deleteLesson: (_, { id }) => Lesson.findByIdAndDelete(id),
-    deleteQuiz: (_, { id }) => Quiz.findByIdAndDelete(id),
+    // // Delete operations
+    // deleteUser: (_, { id }) => User.findByIdAndDelete(id),
+    // deleteLesson: (_, { id }) => Lesson.findByIdAndDelete(id),
+    // deleteQuiz: (_, { id }) => Quiz.findByIdAndDelete(id),
   },
 };
 
