@@ -7,7 +7,7 @@ Music of the Spheres is an interactive learning platform designed to help music 
 - **Interactive Lessons**: Learn key concepts through guided lessons.
 - **Quizzes**: Test your understanding with engaging quizzes.
 - **Tools**: Explore the Circle of Fifths, scales, and chords with interactive tools.
-- **User Authentication**: Sign up and track your progress.
+- **User Authentication**: Sign up and trasck your progress.
 
 ## Technologies Used
 
@@ -22,7 +22,7 @@ Music of the Spheres is an interactive learning platform designed to help music 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/music-of-the-spheres.git
+   git clone https://github.com/evanknight18/theory-of-music.git
    ```
 
 2. Navigate to the project directory:
@@ -61,8 +61,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 Feel free to reach out if you have any questions or suggestions!
 
-- Your Name: [Email Address](mailto:your-email@example.com)
-
----
-
-You can modify this README to match your project's specifics, including updating URLs, file paths, or adding/removing sections that may apply to your project.
+- Your Name: [Email Address](mailto:evanknight18@gmail.com)
