@@ -48,11 +48,6 @@ The application should now be running at `http://localhost:3000`.
 
 We welcome contributions! Please read our [contributing guidelines](CONTRIBUTING.md) for details on how to get involved.
 
-## Challenges & Successes
-
-- **Challenges**: Building intuitive user interactions, integrating music theory concepts, handling authentication, and ensuring scalability.
-- **Successes**: Creating an engaging learning platform with visually appealing tools and fostering an active community.
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
