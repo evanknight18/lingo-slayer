@@ -19,29 +19,31 @@ const CircleOfFifthsPage = () => {
 
   return (
     <Box className="circle-of-fifths-page" padding={5}>
-      <Heading as="h2" size="lg" marginBottom={5}>
+      <Text as="h2" size="lg" marginBottom={5}>
         Circle of Fifths
-      </Heading>
-      <Text marginBottom={5}>
-        The Circle of Fifths is a visual representation of the relationships
-        among the 12 tones of the chromatic scale, key signatures, and the
-        associated major and minor keys.
       </Text>
-      <SimpleGrid columns={4} spacing={5}>
+      <Box position="relative" width="400px" height="400px" margin="0 auto"> {/* Increase the size of the container */}
         {circleOfFifths.map((keyInfo, index) => (
-          <Box key={index} padding={4} borderWidth={1} borderRadius="md">
+          <Box
+            key={index}
+            position="absolute"
+            width="60px"
+            height="60px"
+            top="50%"
+            left="50%"
+            transform={`translate(-50%, -50%) rotate(${index * 30}deg) translate(160px) rotate(${-index * 30}deg)`} // Increase the translation value
+          >
             <Text fontWeight="bold">{keyInfo.note}</Text>
             <Text>Major: {keyInfo.major}</Text>
             <Text>Minor: {keyInfo.minor}</Text>
           </Box>
         ))}
-      </SimpleGrid>
+      </Box>
       <Box className="circle-of-fifths-explanation" marginTop={5}>
         <Text>
           The Circle of Fifths illustrates how keys are related to one another
           and can be a powerful tool for composing and understanding music.
         </Text>
-        {/* You might include further explanations, examples, interactive demonstrations, etc. */}
       </Box>
     </Box>
   );

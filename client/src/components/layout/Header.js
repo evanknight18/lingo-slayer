@@ -34,6 +34,9 @@ const Header = () => {
             <Box as="li" margin="0 0.5rem">
               <ChakraLink as={Link} to="/login">Login</ChakraLink> 
             </Box>
+            <Box as="li" margin="0 0.5rem">
+              <ChakraLink as={Link} to="/signup">Signup</ChakraLink>
+            </Box>
           </Flex>
         </Box>
       </Flex>

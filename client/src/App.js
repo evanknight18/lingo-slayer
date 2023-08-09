@@ -2,7 +2,7 @@ import React from 'react';
 import { ChakraProvider, Flex } from '@chakra-ui/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
-// import { setContext } from '@apollo/client/link/context';
+import { setContext } from '@apollo/client/link/context';
 
 import Dashboard from './pages/Dashboard';
 import LessonsPage from './pages/LessonsPage';
@@ -12,28 +12,27 @@ import ScalesPage from './pages/ScalesPage';
 import ChordsPage from './pages/ChordsPage';
 import QuizPage from './pages/QuizPage';
 import Login from './pages/LoginPage';
-import Register from './pages/RegistrationPage';
+import Signup from './pages/SignupPage';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import theme from './theme';
 
-// const httpLink = createHttpLink({
-//   uri: '/graphql',
-// });
+const httpLink = createHttpLink({
+  url: '/graphql',
+});
 
-// const authLink = setContext((_, { headers }) => {
-//   const token = localStorage.getItem('id_token');
-//   return {
-//     headers: {
-//       ...headers,
-//       authorization: token ? `Bearer ${token}` : '',
-//     },
-//   };
-// });
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
 
 const client = new ApolloClient({
-  // link: httpLink.concat(httpLink),
-  uri: 'http://localhost:3001/graphql',
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
@@ -46,7 +45,7 @@ function App() {
           <Flex as="main" padding="1.5rem">
             <Routes>
               <Route path="/" element={<Dashboard />} />
-              <Route path="/register" element={<Register />} />
+              <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
                 <Route path="/lessons" element={<LessonsPage />} />
                 <Route path="/lesson-detail/:id" element={<LessonDetail />} />
